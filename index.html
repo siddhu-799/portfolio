@@ -10,9 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* ==========================================================================
-           CYBERPUNK THEME VARIABLES
-           ========================================================================== */
+      
         :root {
             --bg-black: #000000;
             --blue-dark: #0066ff;
@@ -29,9 +27,7 @@
             --font-body: 'Rajdhani', sans-serif;
         }
 
-        /* ==========================================================================
-           RESET & BASE STYLES
-           ========================================================================== */
+       
         * {
             margin: 0;
             padding: 0;
@@ -48,17 +44,13 @@
             scroll-behavior: smooth;
         }
 
-        /* Typography */
         h1, h2, h3, h4 { font-family: var(--font-head); text-transform: uppercase; letter-spacing: 2px; }
         p, li, span { font-size: 1.15rem; line-height: 1.6; letter-spacing: 1px; color: #d6f0ff; }
         a { color: var(--blue-light); text-decoration: none; position: relative; }
         
         .highlight { color: var(--blue-light); text-shadow: var(--glow-text); font-weight: 700; }
 
-        /* ==========================================================================
-           BACKGROUND EFFECTS
-           ========================================================================== */
-        /* Animated Perspective Grid */
+       
         .bg-grid {
             position: fixed;
             bottom: -50%; left: -50%;
@@ -81,7 +73,6 @@
             100% { transform: perspective(600px) rotateX(75deg) translateY(60px); }
         }
 
-        /* Scanline Overlay */
         .scanlines {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.3));
@@ -91,7 +82,7 @@
             opacity: 0.6;
         }
 
-        /* Dynamic Spotlight (Driven by JS CSS Variables) */
+       
         .spotlight {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             pointer-events: none; z-index: 1;
@@ -99,9 +90,6 @@
             transition: background 0.1s ease;
         }
 
-        /* ==========================================================================
-           LAYOUT & GLASSMORPHISM PANELS
-           ========================================================================== */
         .layout-container {
             position: relative;
             z-index: 10;
@@ -113,7 +101,7 @@
             gap: 30px;
         }
 
-        /* Glassmorphism Panels */
+        
         .cyber-panel {
             background: var(--panel-bg);
             backdrop-filter: blur(16px);
@@ -135,17 +123,17 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.9), inset 0 0 30px var(--blue-dim), var(--glow-soft);
         }
 
-        /* Hardware Accelerated Float */
+       
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-12px); }
         }
 
-        /* Apply stagger to floating animation so they don't all move at once */
+        
         .cyber-panel:nth-child(even) { animation-delay: -3s; }
         .cyber-panel:nth-child(3n) { animation-delay: -1.5s; }
 
-        /* Panel Specific Sizing */
+      
         .hero-panel { grid-column: span 12; display: flex; align-items: center; justify-content: space-between; }
         .about-panel { grid-column: span 5; }
         .skills-panel { grid-column: span 7; }
@@ -158,9 +146,33 @@
             .hero-panel { flex-direction: column; text-align: center; gap: 30px; }
         }
 
-        /* ==========================================================================
-           TYPOGRAPHY & GLITCH EFFECTS
-           ========================================================================== */
+        /* Profile Image Styling */
+        .profile-image {
+            width: 280px;
+            height: 350px;
+            border-radius: 12px;
+            border: 2px solid var(--blue-light);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3), inset 0 0 15px rgba(0, 102, 255, 0.1);
+            object-fit: cover;
+            object-position: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: brightness(0.95) contrast(1.05);
+            animation: imageFloat 4s ease-in-out infinite;
+        }
+
+        .profile-image:hover {
+            border-color: var(--blue-dark);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.6), inset 0 0 20px rgba(0, 102, 255, 0.2), 0 15px 40px rgba(0, 102, 255, 0.3);
+            transform: translateY(-8px) scale(1.02);
+            filter: brightness(1) contrast(1.1);
+        }
+
+        @keyframes imageFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        
         .section-title {
             font-size: 2rem;
             color: var(--blue-light);
@@ -175,7 +187,7 @@
             background: var(--blue-light); box-shadow: var(--glow-soft);
         }
 
-        /* Glitch Text Effect */
+       
         .glitch {
             position: relative;
             display: inline-block;
@@ -194,10 +206,6 @@
             6% { text-shadow: -4px 0 var(--blue-dark), 4px 0 var(--blue-light); transform: translate(0); }
         }
 
-        /* ==========================================================================
-           COMPONENTS (Buttons, Cards, Forms)
-           ========================================================================== */
-        /* Neon Button */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -227,7 +235,6 @@
         .btn:hover::before { width: 100%; }
         .btn:hover { border-color: var(--blue-dark); box-shadow: var(--glow-strong); transform: scale(1.05); }
 
-        /* Project Cards */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -255,7 +262,6 @@
             color: var(--blue-light); border-radius: 4px; background: rgba(0,102,255,0.1);
         }
 
-        /* Circular Skills / Badges */
         .skills-wrapper { display: flex; flex-wrap: wrap; gap: 15px; }
         .skill-item {
             padding: 10px 20px;
@@ -274,7 +280,6 @@
             transform: translateY(-5px);
         }
 
-        /* Timeline / Experience */
         .timeline { border-left: 2px solid var(--blue-dark); padding-left: 30px; margin-left: 10px; }
         .timeline-node { position: relative; margin-bottom: 40px; }
         .timeline-node::before {
@@ -287,7 +292,6 @@
         }
         .date { font-family: var(--font-head); color: var(--blue-dark); font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 2px; }
         
-        /* Terminal Contact Form */
         .terminal-form {
             max-width: 600px;
             margin: 0 auto;
@@ -320,9 +324,7 @@
             background: rgba(0, 102, 255, 0.1);
         }
 
-        /* ==========================================================================
-           CUSTOM CURSOR ENGINE
-           ========================================================================== */
+  
         .cursor-dot {
             position: fixed; top: 0; left: 0;
             width: 6px; height: 6px;
@@ -344,27 +346,151 @@
             opacity: 0.5;
             transition: width 0.2s, height 0.2s;
         }
-        /* Hover state class */
         body.hover-active .cursor-dot { transform: translate(-50%, -50%) scale(2); background: var(--blue-light); }
+
+        /* Terminal Loading Screen */
+        .terminal-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001;
+            backdrop-filter: blur(10px);
+            animation: fadeOut 0.8s ease-in-out 3.2s forwards;
+        }
+
+        .terminal-loader.hidden {
+            display: none;
+        }
+
+        .loader-content {
+            text-align: center;
+            font-family: var(--font-head);
+            max-width: 500px;
+            padding: 40px;
+        }
+
+        .loader-title {
+            font-size: 2rem;
+            color: var(--blue-light);
+            margin-bottom: 30px;
+            text-shadow: var(--glow-text);
+            letter-spacing: 3px;
+            animation: blink 1s infinite;
+        }
+
+        .loader-lines {
+            text-align: left;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: #00ff00;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            min-height: 90px;
+        }
+
+        .loader-line {
+            margin-bottom: 8px;
+            opacity: 0;
+            animation: typeIn 0.5s ease forwards;
+        }
+
+        @keyframes typeIn {
+            to { opacity: 1; }
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(0, 102, 255, 0.1);
+            border: 1px solid var(--blue-dark);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue-dark), var(--blue-light));
+            border-radius: 4px;
+            width: 0%;
+            box-shadow: var(--glow-soft);
+            animation: progressAnim 3s ease-in-out forwards;
+        }
+
+        @keyframes progressAnim {
+            0% { width: 0%; }
+            50% { width: 60%; }
+            100% { width: 100%; }
+        }
+
+        .loader-status {
+            font-size: 0.85rem;
+            color: var(--blue-dark);
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+
+        .cursor-blink {
+            display: inline-block;
+            width: 8px;
+            height: 1em;
+            background: var(--blue-light);
+            margin-left: 4px;
+            animation: cursorBlink 0.8s infinite;
+        }
+
+        @keyframes cursorBlink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        @keyframes blink {
+            0%, 49%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
+        }
 
     </style>
 </head>
 <body>
 
-    <!-- CUSTOM CURSOR (DOM Nodes for Trailing) -->
+    <!-- Terminal Loading Screen -->
+    <div class="terminal-loader" id="terminal-loader">
+        <div class="loader-content">
+            <div class="loader-title">SYSTEM BOOT</div>
+            <div class="loader-lines" id="loader-lines">
+                <div class="loader-line" style="animation-delay: 0.1s;">[ INIT ] Initializing neural network...</div>
+                <div class="loader-line" style="animation-delay: 0.5s;">[ LOAD ] Loading cyberpunk interface...</div>
+                <div class="loader-line" style="animation-delay: 0.9s;">[ SYNC ] Syncing database modules...<span class="cursor-blink"></span></div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar"></div>
+            </div>
+            <div class="loader-status">BOOTING SYSTEM | 100%</div>
+        </div>
+    </div>
+
     <div class="cursor-dot" id="cursor-main"></div>
     <!-- JavaScript will inject trail elements here -->
     <div id="trail-container"></div>
 
-    <!-- BACKGROUND ENGINE -->
     <div class="bg-grid"></div>
     <div class="spotlight"></div>
     <div class="scanlines"></div>
 
-    <!-- MAIN UI LAYOUT -->
+    
     <main class="layout-container">
 
-        <!-- 1. HERO SECTION -->
+        
         <section class="cyber-panel hero-panel" id="hero">
             <div>
                 <h4 style="color: var(--blue-dark); margin-bottom: 15px; text-shadow: var(--glow-soft);">// SYS.INIT : ONLINE</h4>
@@ -378,25 +504,11 @@
                     <a href="#contact" class="btn magnetic-btn" style="background: rgba(0,102,255,0.1);">Ping Me</a>
                 </div>
             </div>
-            <div style="text-align: right; font-family: var(--font-head); font-size: 0.9rem; color: var(--blue-dim);">
-                <p>STATUS: <span style="color: var(--blue-light);">ACTIVE</span></p>
-                <p>DOB: 04-04-2005</p>
-                <p>LOC: HYPER_SPACE</p>
-            </div>
+            
+            <img src="download.jpg" alt="Profile" class="profile-image">
         </section>
 
-        <!-- 2. ABOUT SECTION -->
-        <section class="cyber-panel about-panel interactive-panel" id="about">
-            <h2 class="section-title">DATABANKS</h2>
 
-            <h3 style="margin-bottom: 15px; color: #fff;">Soft Skills</h3>
-            <ul style="list-style: none;">
-                <li style="margin-bottom: 10px;">> Creative Thinking</li>
-                <li>> Problem Solving</li>
-            </ul>
-        </section>
-
-        <!-- 3. SKILLS SECTION -->
         <section class="cyber-panel skills-panel interactive-panel" id="skills">
             <h2 class="section-title">TECH_ARSENAL</h2>
             
@@ -431,7 +543,6 @@
             </div>
         </section>
 
-        <!-- 4. EXPERIENCE & CERTIFICATION -->
         <section class="cyber-panel exp-panel interactive-panel" id="experience">
             <h2 class="section-title">SYS_LOGS // EXP</h2>
             
@@ -454,7 +565,6 @@
             </div>
         </section>
 
-        <!-- 5. PROJECTS SECTION -->
         <section class="cyber-panel projects-panel" id="projects">
             <h2 class="section-title">EXECUTABLES // PROJ</h2>
             
@@ -496,7 +606,6 @@
             </div>
         </section>
 
-        <!-- 6. CONTACT SECTION -->
         <section class="cyber-panel contact-panel" id="contact">
             <h2 class="section-title" style="justify-content: center;">ESTABLISH_UPLINK</h2>
             <p style="margin-bottom: 30px; text-align: center;">
@@ -505,7 +614,6 @@
             
             <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 40px; flex-wrap: wrap;">
                 <a href="mailto:siddhumedisetti42@gmail.com" class="btn magnetic-btn">siddhumedisetti42@gmail.com</a>
-                <a href="tel:+917995743897" class="btn magnetic-btn">+91 7995743897</a>
                 <a href="https://www.linkedin.com/in/siddhu-medisetti-42577292/" target="_blank" class="btn magnetic-btn">LINKEDIN</a>
                 <a href="https://github.com/siddhu-799" target="_blank" class="btn magnetic-btn">GITHUB</a>
             </div>
@@ -529,11 +637,15 @@
 
     </main>
 
-    <!-- ==========================================================================
-         JAVASCRIPT ENGINE
-         ========================================================================== -->
     <script>
-        // --- 1. DYNAMIC SPOTLIGHT LIGHTING ---
+        // Terminal Loading Animation
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('terminal-loader');
+            setTimeout(() => {
+                loader.classList.add('hidden');
+            }, 3200);
+        });
+
         const spotlight = document.querySelector('.spotlight');
         
         window.addEventListener('mousemove', (e) => {
@@ -542,17 +654,15 @@
             spotlight.style.setProperty('--mouse-y', `${e.clientY}px`);
         });
 
-        // --- 2. TRAILING NEON CURSOR ---
         const trailContainer = document.getElementById('trail-container');
         const mainCursor = document.getElementById('cursor-main');
         const TRAIL_DOTS = 12;
         const dots = [];
         
-        // Mouse position state
+        
         let mouseX = window.innerWidth / 2;
         let mouseY = window.innerHeight / 2;
 
-        // Initialize trail DOM nodes
         for (let i = 0; i < TRAIL_DOTS; i++) {
             const dot = document.createElement('div');
             dot.className = 'cursor-trail';
@@ -560,7 +670,6 @@
             dots.push({ x: mouseX, y: mouseY, el: dot });
         }
 
-        // Update target position on mousemove
         window.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
@@ -568,25 +677,21 @@
             mainCursor.style.transform = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%))`;
         });
 
-        // Animation Loop for trailing logic
         function animateTrail() {
             let currentX = mouseX;
             let currentY = mouseY;
             
             dots.forEach((dot, index) => {
-                // Easing logic (spring effect)
                 const dx = currentX - dot.x;
                 const dy = currentY - dot.y;
                 
-                dot.x += dx * 0.3; // Speed of follow
+                dot.x += dx * 0.3; 
                 dot.y += dy * 0.3;
                 
-                // Scale and opacity decay based on position in array
                 const scale = 1 - (index / TRAIL_DOTS);
                 dot.el.style.transform = `translate(calc(${dot.x}px - 50%), calc(${dot.y}px - 50%)) scale(${scale})`;
                 dot.el.style.opacity = scale * 0.8;
                 
-                // Next dot follows this dot
                 currentX = dot.x;
                 currentY = dot.y;
             });
@@ -595,14 +700,12 @@
         }
         animateTrail();
 
-        // Cursor Hover Effects for interactive elements
         const interactives = document.querySelectorAll('a, button, input, textarea, .interactive-panel, .magnetic-btn');
         interactives.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hover-active'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hover-active'));
         });
 
-        // --- 3. 3D GLASS PANEL TILT ---
         const panels = document.querySelectorAll('.interactive-panel');
         panels.forEach(panel => {
             panel.addEventListener('mousemove', (e) => {
@@ -627,7 +730,6 @@
             });
         });
 
-        // --- 4. MAGNETIC BUTTONS ---
         const magneticBtns = document.querySelectorAll('.magnetic-btn');
         magneticBtns.forEach(btn => {
             btn.addEventListener('mousemove', (e) => {
@@ -635,7 +737,6 @@
                 const x = e.clientX - rect.left - rect.width / 2;
                 const y = e.clientY - rect.top - rect.height / 2;
                 
-                // Pull element towards mouse gently
                 btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
             });
             
